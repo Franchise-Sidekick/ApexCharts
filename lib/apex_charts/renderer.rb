@@ -35,20 +35,11 @@ module ApexCharts
     def defer(js)
       if defer?
         <<~DEFERRED
-          (function() {
+          $(document).on('turbo:load', function() {
             var createChart = function() {
               #{indent(js)}
             };
-            if (window.addEventListener) {
-              console.log('added event listener');
-              window.addEventListener("turbo:load", createChart, true);
-            } else if (window.attachEvent) {
-              console.log('attached event listener');
-              window.attachEvent("turbo:load", createChart);
-            } else {
-              console.log('create chart');
-              createChart();
-            }
+            createChart();
           })();
         DEFERRED
       else
