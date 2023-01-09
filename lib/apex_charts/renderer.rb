@@ -40,10 +40,13 @@ module ApexCharts
               #{indent(js)}
             };
             if (window.addEventListener) {
+              console.log('added event listener');
               window.addEventListener("turbo:load", createChart, true);
             } else if (window.attachEvent) {
+              console.log('attached event listener');
               window.attachEvent("turbo:load", createChart);
             } else {
+              console.log('create chart');
               createChart();
             }
           })();
