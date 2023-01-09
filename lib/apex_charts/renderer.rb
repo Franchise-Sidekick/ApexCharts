@@ -41,6 +41,8 @@ module ApexCharts
             };
             if (window.addEventListener) {
               window.addEventListener("turbo:load", createChart, true);
+            } else if (window.attachEvent) {
+              window.attachEvent("turbo:load", createChart);
             } else {
               createChart();
             }
